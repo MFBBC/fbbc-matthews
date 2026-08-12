@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import BookingEmbed from '@/components/BookingEmbed';
+import BrandHeader from '@/components/BrandHeader';
 
 export const metadata: Metadata = {
   title: 'Book Your Transformation Call | Fit Body Boot Camp Matthews',
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
  */
 export default function BookPage() {
   return (
-    <main className="mx-auto max-w-2xl px-4 pb-16 pt-10">
+    <><BrandHeader /><main className="mx-auto max-w-2xl px-4 pb-16 pt-10">
       <p className="eyebrow mb-3 text-center">Application received 🎉 One more step</p>
       <h1 className="h-section text-center">Grab Your Call Time Right Now</h1>
       <p className="mx-auto mt-4 max-w-lg text-center text-lg text-steel">
@@ -31,6 +32,6 @@ export default function BookPage() {
           Scan happens at your first studio visit.
         </p>
       </div>
-    </main>
+    </main></>
   );
 }

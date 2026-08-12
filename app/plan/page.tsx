@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { CtaButton, StickyCta } from '@/components/Cta';
 import TransformationCarousel from '@/components/TransformationCarousel';
 import FunnelFooter from '@/components/FunnelFooter';
+import BrandHeader from '@/components/BrandHeader';
 import { GymSchema, FaqSchema } from '@/components/Schema';
 
 export const metadata: Metadata = {
@@ -43,6 +44,7 @@ export default function PlanPage() {
     <>
       <GymSchema />
       <FaqSchema faqs={FAQS} />
+      <BrandHeader />
       <main className="pb-10">
         {/* Deep-link watchers back to the VSL — above the fold, never forced (spec) */}
         <div className="bg-ink px-4 py-2.5 text-center text-sm text-white/90">

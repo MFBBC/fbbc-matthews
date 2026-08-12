@@ -3,6 +3,7 @@ import { cookies } from 'next/headers';
 import { resolveVariant, AB_COOKIES } from '@/lib/flags';
 import { GymSchema, VideoSchema } from '@/components/Schema';
 import FunnelFooter from '@/components/FunnelFooter';
+import BrandHeader from '@/components/BrandHeader';
 import VslHero from '@/components/VslHero';
 
 export const metadata: Metadata = {
@@ -30,6 +31,7 @@ export default function VslPage() {
     <>
       <GymSchema />
       <VideoSchema />
+      <BrandHeader />
       <VslHero headlineVariant={headlineVariant} skipPlanVariant={skipPlanVariant} />
       <FunnelFooter />
     </>

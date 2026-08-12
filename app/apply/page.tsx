@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { cookies } from 'next/headers';
 import { resolveVariant, AB_COOKIES } from '@/lib/flags';
 import QuizForm from '@/components/QuizForm';
+import BrandHeader from '@/components/BrandHeader';
 
 export const metadata: Metadata = {
   title: 'Apply For Your Free Transformation Assessment | Fit Body Boot Camp Matthews',
@@ -10,5 +11,10 @@ export const metadata: Metadata = {
 
 export default function ApplyPage() {
   const q1Variant = resolveVariant('q1', cookies().get(AB_COOKIES.q1)?.value);
-  return <QuizForm q1Variant={q1Variant} />;
+  return (
+    <>
+      <BrandHeader />
+      <QuizForm q1Variant={q1Variant} />
+    </>
+  );
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import ConfirmedContent from '@/components/ConfirmedContent';
+import BrandHeader from '@/components/BrandHeader';
 
 export const metadata: Metadata = {
   title: 'Your Call Is Booked | Fit Body Boot Camp Matthews',
@@ -8,5 +9,10 @@ export const metadata: Metadata = {
 
 /** Page 5 — fires CallBooked, pre-sells the call with member videos, cuts no-shows. */
 export default function ConfirmedPage() {
-  return <ConfirmedContent />;
+  return (
+    <>
+      <BrandHeader />
+      <ConfirmedContent />
+    </>
+  );
 }

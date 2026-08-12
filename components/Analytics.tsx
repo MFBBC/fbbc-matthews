@@ -10,6 +10,19 @@ const GA4 = process.env.NEXT_PUBLIC_GA4_ID;
 export default function Analytics() {
   useEffect(() => {
     captureUtms();
+    // A/B split, client-side (replaces the removed edge middleware — this can
+    // never take the site down). First pageview renders variant A; the sticky
+    // cookie takes effect from the next navigation. Env overrides still win.
+    try {
+      ['ab_headline', 'ab_q1', 'ab_skip_plan'].forEach((name) => {
+        if (!document.cookie.split('; ').some((c) => c.startsWith(name + '='))) {
+          const v = Math.random() < 0.5 ? 'a' : 'b';
+          document.cookie = `${name}=${v}; max-age=${60 * 60 * 24 * 90}; path=/; samesite=lax`;
+        }
+      });
+    } catch {
+      /* non-critical */
+    }
   }, []);
 
   return (

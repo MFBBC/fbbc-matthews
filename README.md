@@ -101,3 +101,14 @@ Read the variant cookies in your analytics (they're also sent as `ab_q1_variant`
 - [ ] Rich Results Test passes on /, /plan, and each /resources page
 - [ ] Written photo permissions confirmed for all six transformation photos
 - [ ] Real privacy policy + terms pasted into /privacy and /terms
+
+## Brand system (v3)
+
+Styled to the official **FBBC Brand Identity & Style Guide (April 2024)**:
+- Colors: FBBC Blue `#0A73CE`, FBBC Yellow `#FFC000` (CTAs, yellow w/ black text — matches the corporate "Start Trial" pattern), Black, Dark Grey `#333333`, Light Grey `#A7A9AC`.
+- Fonts: headers use **Montserrat** as the open-license stand-in for Avenir Bold (drop licensed Avenir Next woff2s into `app/fonts/` and update `app/layout.tsx` to be pixel-exact); body is **Roboto** per the guide.
+- Real transformation photos live in `public/images/transformations/` (Monica, Katie, Shelby, Barb, Dustin, Kyle). `public/images/coach-nate.jpg` and `public/images/vsl-poster.jpg` are still branded placeholders — replace with real assets.
+
+## A/B testing note (v3)
+
+`middleware.ts` was removed (it crashed under Vercel's edge runtime for this project). The 50/50 split now happens client-side in `components/Analytics.tsx` — first pageview renders variant A, the sticky cookie applies from the next navigation. Env overrides (`NEXT_PUBLIC_AB_*`) still force a variant for everyone.

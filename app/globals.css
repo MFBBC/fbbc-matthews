@@ -7,13 +7,13 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-paper font-body text-ink;
-    font-size: 16px; /* body text >= 16px (spec) */
+    @apply bg-white font-body text-ink;
+    font-size: 16px; /* Roboto Regular 16px body (brand guide) */
     -webkit-font-smoothing: antialiased;
   }
   ::selection {
-    background: #14161a;
-    color: #fbfaf7;
+    background: #0a73ce;
+    color: #ffffff;
   }
   @media (prefers-reduced-motion: reduce) {
     html {
@@ -29,30 +29,41 @@
 }
 
 @layer components {
-  /* Headlines: 28–34px mobile (spec), scale up on md+ */
+  /* Headers: Avenir-style bold (Montserrat stand-in). 28–34px mobile, larger md+. */
   .h-display {
-    @apply font-display font-extrabold uppercase leading-[1.05] tracking-tight;
-    font-size: clamp(28px, 8vw, 34px);
+    @apply font-display font-black uppercase leading-[1.04] tracking-tight;
+    font-size: clamp(30px, 8.5vw, 36px);
   }
   @screen md {
     .h-display {
-      font-size: 52px;
+      font-size: 58px;
     }
   }
   .h-section {
-    @apply font-display font-bold uppercase leading-tight tracking-tight;
+    @apply font-display font-extrabold uppercase leading-[1.08] tracking-tight;
     font-size: clamp(26px, 7vw, 32px);
   }
   @screen md {
     .h-section {
-      font-size: 40px;
+      font-size: 42px;
     }
   }
   .eyebrow {
-    @apply text-xs font-bold uppercase tracking-[0.2em] text-steel;
+    @apply font-display text-xs font-extrabold uppercase tracking-[0.22em] text-fbblue;
   }
+  .eyebrow-onDark {
+    @apply font-display text-xs font-extrabold uppercase tracking-[0.22em] text-fbyellow;
+  }
+  /* Yellow marker highlight — mirrors the brand's highlighted-quote treatment */
   .mark-highlight {
-    background: linear-gradient(transparent 55%, #f5d9a8 55%);
+    background: linear-gradient(transparent 52%, rgba(255, 192, 0, 0.85) 52%);
     padding: 0 0.15em;
+  }
+  .mark-highlight-onDark {
+    @apply text-fbyellow;
+  }
+  /* Blue kicker bar to the left of key statements (brand website motif) */
+  .kicker-bar {
+    @apply border-l-4 border-fbyellow pl-4;
   }
 }

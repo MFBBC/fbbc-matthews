@@ -4,22 +4,23 @@ import Analytics from '@/components/Analytics';
 import { SITE_URL } from '@/lib/business';
 import './globals.css';
 
-// Self-hosted fonts (spec: self-hosted or system fonts — no external font requests, no CLS).
+// Brand guide: headers = Avenir Bold, body = Roboto. Avenir is a commercial font;
+// Montserrat (bundled here) is the standard open substitute — swap the woff2 files
+// for licensed Avenir Next if the franchise provides them.
 const display = localFont({
   src: [
-    { path: './fonts/barlow-condensed-latin-600-normal.woff2', weight: '600' },
-    { path: './fonts/barlow-condensed-latin-700-normal.woff2', weight: '700' },
-    { path: './fonts/barlow-condensed-latin-800-normal.woff2', weight: '800' },
+    { path: './fonts/montserrat-latin-700-normal.woff2', weight: '700' },
+    { path: './fonts/montserrat-latin-800-normal.woff2', weight: '800' },
+    { path: './fonts/montserrat-latin-900-normal.woff2', weight: '900' },
   ],
   variable: '--font-display',
   display: 'swap',
 });
 const body = localFont({
   src: [
-    { path: './fonts/barlow-latin-400-normal.woff2', weight: '400' },
-    { path: './fonts/barlow-latin-500-normal.woff2', weight: '500' },
-    { path: './fonts/barlow-latin-600-normal.woff2', weight: '600' },
-    { path: './fonts/barlow-latin-700-normal.woff2', weight: '700' },
+    { path: './fonts/roboto-latin-400-normal.woff2', weight: '400' },
+    { path: './fonts/roboto-latin-500-normal.woff2', weight: '500' },
+    { path: './fonts/roboto-latin-700-normal.woff2', weight: '700' },
   ],
   variable: '--font-body',
   display: 'swap',
