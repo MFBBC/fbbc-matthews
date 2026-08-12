@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-paper font-body text-ink;
+    font-size: 16px; /* body text >= 16px (spec) */
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background: #14161a;
+    color: #fbfaf7;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* Headlines: 28–34px mobile (spec), scale up on md+ */
+  .h-display {
+    @apply font-display font-extrabold uppercase leading-[1.05] tracking-tight;
+    font-size: clamp(28px, 8vw, 34px);
+  }
+  @screen md {
+    .h-display {
+      font-size: 52px;
+    }
+  }
+  .h-section {
+    @apply font-display font-bold uppercase leading-tight tracking-tight;
+    font-size: clamp(26px, 7vw, 32px);
+  }
+  @screen md {
+    .h-section {
+      font-size: 40px;
+    }
+  }
+  .eyebrow {
+    @apply text-xs font-bold uppercase tracking-[0.2em] text-steel;
+  }
+  .mark-highlight {
+    background: linear-gradient(transparent 55%, #f5d9a8 55%);
+    padding: 0 0.15em;
+  }
+}
