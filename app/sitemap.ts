@@ -4,7 +4,6 @@ import { SITE_URL } from '@/lib/business';
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages = [
     '', // VSL page — indexed
-    '/plan', // indexed
     '/resources',
     '/resources/gym-in-matthews-nc',
     '/resources/gym-in-stallings-nc',
@@ -19,7 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return pages.map((p) => ({
     url: `${SITE_URL}${p}`,
     lastModified: new Date(),
-    changeFrequency: p === '' || p === '/plan' ? 'weekly' : 'monthly',
-    priority: p === '' ? 1 : p === '/plan' ? 0.9 : 0.6,
+    changeFrequency: p === '' ? 'weekly' : 'monthly',
+    priority: p === '' ? 1 : 0.6,
   }));
 }

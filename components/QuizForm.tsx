@@ -171,7 +171,7 @@ export default function QuizForm({ q1Variant }: { q1Variant: Variant }) {
           <button
             onClick={() => a.goal.trim() && setStep(2)}
             disabled={!a.goal.trim()}
-            className="mt-6 w-full rounded-xl bg-cta px-6 py-4 font-display text-xl font-bold uppercase tracking-wide text-white disabled:opacity-40"
+            className="mt-6 w-full rounded-lg bg-fbyellow px-6 py-4 font-display text-lg font-extrabold uppercase tracking-wide text-ink shadow-cta md:text-xl disabled:opacity-40"
             style={{ minHeight: 56 }}
           >
             Continue →
@@ -218,7 +218,7 @@ export default function QuizForm({ q1Variant }: { q1Variant: Variant }) {
           {contactError && <p className="mt-3 font-semibold text-cta">{contactError}</p>}
           <button
             onClick={completeContact}
-            className="mt-6 w-full rounded-xl bg-cta px-6 py-4 font-display text-xl font-bold uppercase tracking-wide text-white"
+            className="mt-6 w-full rounded-lg bg-fbyellow px-6 py-4 font-display text-lg font-extrabold uppercase tracking-wide text-ink shadow-cta md:text-xl"
             style={{ minHeight: 56 }}
           >
             Continue →
@@ -290,11 +290,19 @@ export default function QuizForm({ q1Variant }: { q1Variant: Variant }) {
           <button
             onClick={submit}
             disabled={submitting}
-            className="mt-10 w-full rounded-xl bg-cta px-6 py-4 font-display text-xl font-bold uppercase tracking-wide text-white disabled:opacity-60"
+            className="mt-10 w-full rounded-lg bg-fbyellow px-6 py-4 font-display text-lg font-extrabold uppercase tracking-wide text-ink shadow-cta disabled:opacity-60 md:text-xl"
             style={{ minHeight: 56 }}
           >
             {submitting ? 'One second…' : 'Submit My Application →'}
           </button>
+          <p className="mt-3 text-center text-xs leading-relaxed text-graphite/60">
+            By submitting, you agree to our{' '}
+            <a href="/terms" className="underline">Terms</a> and{' '}
+            <a href="/privacy" className="underline">Privacy Policy</a>, and consent to
+            receive calls and texts from Fit Body Boot Camp Matthews about your application
+            (msg &amp; data rates may apply; reply STOP to opt out). Consent is not a
+            condition of purchase.
+          </p>
         </section>
       )}
     </main>

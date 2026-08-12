@@ -5,6 +5,9 @@ import { GymSchema, VideoSchema } from '@/components/Schema';
 import FunnelFooter from '@/components/FunnelFooter';
 import BrandHeader from '@/components/BrandHeader';
 import VslHero from '@/components/VslHero';
+import SalesLetter from '@/components/SalesLetter';
+import { FaqSchema } from '@/components/Schema';
+import { FAQS } from '@/components/SalesLetter';
 
 export const metadata: Metadata = {
   title: 'The Reason Nothing Has Worked Isn’t You | Fit Body Boot Camp Matthews',
@@ -30,9 +33,11 @@ export default function VslPage() {
   return (
     <>
       <GymSchema />
+      <FaqSchema faqs={FAQS} />
       <VideoSchema />
       <BrandHeader />
       <VslHero headlineVariant={headlineVariant} skipPlanVariant={skipPlanVariant} />
+      <SalesLetter />
       <FunnelFooter />
     </>
   );

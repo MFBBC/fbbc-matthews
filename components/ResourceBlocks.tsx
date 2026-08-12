@@ -11,7 +11,7 @@ export function ResourceCta({ headline = 'Ready to see if we’re the right fit?
       </p>
       <Link
         href="/apply"
-        className="mt-4 inline-block rounded-xl bg-cta px-8 py-4 font-display text-lg font-bold uppercase tracking-wide text-white"
+        className="mt-4 inline-block rounded-lg bg-fbyellow px-8 py-4 font-display text-lg font-extrabold uppercase tracking-wide text-ink shadow-cta"
         style={{ minHeight: 52 }}
       >
         Apply For Your Free Assessment →
