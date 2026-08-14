@@ -6,7 +6,7 @@ import { CtaButton, StickyCta, TrustStrip } from '@/components/Cta';
 import { getWatchDepth } from '@/lib/tracking';
 import type { Variant } from '@/lib/flags';
 
-const CTA_LABEL = 'Apply For Your Free Transformation Assessment →';
+const CTA_LABEL = 'Book My Free Transformation Call →';
 
 /**
  * Page 1 — VSL page, FBBC brand system.
@@ -28,7 +28,7 @@ export default function VslHero({
 }) {
   const [played, setPlayed] = useState(false);
   const [showSafetyNet, setShowSafetyNet] = useState(false);
-  const [dest, setDest] = useState('/apply');
+  const [dest, setDest] = useState('/book');
   const sentinel = useRef<HTMLDivElement>(null);
   const playedRef = useRef(false);
 
@@ -103,7 +103,7 @@ export default function VslHero({
           </p>
 
           <div className="mt-8">
-            <CtaButton href={dest} sub="Takes 60 seconds · No credit card · No obligation">
+            <CtaButton href={dest} sub="Pick a time in 30 seconds · No credit card · Leave with a plan either way">
               {CTA_LABEL}
             </CtaButton>
           </div>
@@ -136,7 +136,7 @@ export default function VslHero({
         </section>
       )}
 
-      <StickyCta href={dest} label="Apply For Your Free Assessment →" revealAfter={0.25} />
+      <StickyCta href={dest} label="Book My Free Call →" revealAfter={0.25} />
     </main>
   );
 }

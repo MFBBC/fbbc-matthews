@@ -112,3 +112,12 @@ Styled to the official **FBBC Brand Identity & Style Guide (April 2024)**:
 ## A/B testing note (v3)
 
 `middleware.ts` was removed (it crashed under Vercel's edge runtime for this project). The 50/50 split now happens client-side in `components/Analytics.tsx` — first pageview renders variant A, the sticky cookie applies from the next navigation. Env overrides (`NEXT_PUBLIC_AB_*`) still force a variant for everyone.
+
+## v6 — quiz removed (friction test)
+
+Flow is now `/` → `/book` → `/confirmed`. `/apply` 301s to `/book`; `components/QuizForm.tsx`
+stays in the repo dormant. To restore the quiz: revert `app/apply/page.tsx` to render QuizForm
+and point CTAs back to `/apply`. NOTE: with no quiz, the GHL webhook (application-started/
+completed tags, goal/how_long/obstacle/readiness_score fields) receives nothing — the call
+framework's Phase 2 (reading answers back) has no inputs, and lead capture happens entirely in
+the GHL calendar form. Watch show rates and call quality; that data decides if the quiz returns.

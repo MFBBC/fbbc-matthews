@@ -25,10 +25,10 @@ const FAQS = [
 
 export { FAQS };
 
-const CTA = 'Apply For My Free Call \u2192';
+const CTA = 'Book My Free Transformation Call \u2192';
 
 /**
- * The full approved sales letter, verbatim, in spec order. Every CTA → /apply.
+ * The full approved sales letter, in spec order. Every CTA → /book (quiz removed v6).
  * Rendered on the homepage below the VSL hero (single-page funnel).
  */
 export default function SalesLetter() {
@@ -36,9 +36,9 @@ export default function SalesLetter() {
     <div className="pb-10">
       {/* ── Offer breakdown ─────────────────────────────────────────── */}
         <section className="mx-auto max-w-3xl px-4 pt-12">
-          <p className="eyebrow mb-3 text-center">Not a sales pitch. A plan.</p>
+          <p className="eyebrow mb-3 text-center">Not a sales pitch. A plan — free either way.</p>
           <h1 className="h-display text-center">
-            Your Free Transformation Call — Here&apos;s What You Walk Away With
+            Everything You Get When You Book — Free
           </h1>
           <ul className="mt-8 space-y-5">
             <li className="rounded-2xl bg-white p-5 shadow-sm">
@@ -132,7 +132,7 @@ export default function SalesLetter() {
               </div>
             </div>
             <div className="mt-10">
-              <CtaButton href="/apply">Get My Free Transformation Call →</CtaButton>
+              <CtaButton href="/book">Book My Free Transformation Call →</CtaButton>
             </div>
           </div>
         </section>
@@ -149,11 +149,11 @@ export default function SalesLetter() {
             tens of thousands of transformations and counting.
           </p>
           <p className="mx-auto mt-2 max-w-2xl text-center text-sm text-steel">
-            Results vary by individual. What doesn&apos;t vary: every one of them started with
+            That's 417 pounds lost between the six people on this page. Results vary by individual. What doesn&apos;t vary: every one of them started with
             the same free call you&apos;re looking at right now.
           </p>
           <div className="mt-8">
-            <CtaButton href="/apply">Apply For My Free Call →</CtaButton>
+            <CtaButton href="/book">Book My Free Transformation Call →</CtaButton>
           </div>
         </section>
 
@@ -313,7 +313,7 @@ export default function SalesLetter() {
           </p>
           <div className="mt-8">
             <CtaButton
-              href="/apply"
+              href="/book"
               sub="Free InBody Success Scan included · Coach Nate personally reviews every application"
             >
               {CTA}

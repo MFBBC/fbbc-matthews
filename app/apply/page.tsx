@@ -1,20 +1,11 @@
-import type { Metadata } from 'next';
-import { cookies } from 'next/headers';
-import { resolveVariant, AB_COOKIES } from '@/lib/flags';
-import QuizForm from '@/components/QuizForm';
-import BrandHeader from '@/components/BrandHeader';
+import { permanentRedirect } from 'next/navigation';
 
-export const metadata: Metadata = {
-  title: 'Apply For Your Free Transformation Assessment | Fit Body Boot Camp Matthews',
-  robots: { index: false, follow: false }, // conversion page — keep out of the index
-};
-
-export default function ApplyPage() {
-  const q1Variant = resolveVariant('q1', cookies().get(AB_COOKIES.q1)?.value);
-  return (
-    <>
-      <BrandHeader />
-      <QuizForm q1Variant={q1Variant} />
-    </>
-  );
+/**
+ * v6: quiz removed to shorten the path (friction test). Booking captures
+ * contact info via the GHL calendar form instead. To restore the quiz:
+ * put back the previous version of this file (QuizForm is still in
+ * components/) and point CTAs back to /apply.
+ */
+export default function ApplyRedirect() {
+  permanentRedirect('/book');
 }
