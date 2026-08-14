@@ -1,12 +1,15 @@
 'use client';
 
+import Script from 'next/script';
 import { useEffect, useState } from 'react';
 
 /**
  * GHL "Transformation Call" calendar embed.
  * - Prefills name/email/phone via URL params from sessionStorage (set by the quiz)
  *   so nothing is re-typed.
- * - Reserved height => no CLS.
+ * - Height: GHL's form_embed.js auto-sizes the iframe to the widget's real
+ *   content at every step (no dead space, no cut-off). A modest min-height
+ *   only covers the initial load to limit CLS.
  * - Route to /confirmed: set the calendar's "Thank You / redirect URL" in GHL to
  *   {SITE_URL}/confirmed (README). As a progressive enhancement we also listen for
  *   the widget's booked postMessage and redirect client-side.
@@ -51,14 +54,18 @@ export default function BookingEmbed() {
   }
 
   return (
-    <div className="overflow-hidden rounded-2xl bg-white shadow-md" style={{ minHeight: 640 }}>
+    <div className="overflow-hidden rounded-2xl bg-white shadow-md">
       <iframe
         src={src}
+        id="fbbc-booking-widget"
         title="Book your Transformation Call"
         className="w-full"
-        style={{ height: 720, border: 0 }}
+        style={{ minHeight: 480, border: 0 }}
+        scrolling="no"
         loading="eager"
       />
+      {/* Official GHL embed helper: resizes the iframe to match widget content */}
+      <Script src="https://link.msgsndr.com/js/form_embed.js" strategy="afterInteractive" />
     </div>
   );
 }
