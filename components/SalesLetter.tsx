@@ -1,5 +1,3 @@
-import Image from 'next/image';
-import Link from 'next/link';
 import { CtaButton } from '@/components/Cta';
 import TransformationCarousel from '@/components/TransformationCarousel';
 import { BIZ } from '@/lib/business';
@@ -41,14 +39,14 @@ export default function SalesLetter() {
             Everything You Get When You Book — Free
           </h1>
           <ul className="mt-8 space-y-5">
-            <li className="rounded-2xl bg-white p-5 shadow-sm">
+            <li className="rounded-2xl border border-line bg-white p-5 shadow-sm">
               <p>
                 <strong>Your personal transformation roadmap</strong> — 20 minutes on the phone
                 with Coach Nate: where you are, where you want to be, and the exact route between
                 them. No drive, no gym-lobby ambush — just answers.
               </p>
             </li>
-            <li className="rounded-2xl bg-white p-5 shadow-sm">
+            <li className="rounded-2xl border border-line bg-white p-5 shadow-sm">
               <p>
                 <strong>A free InBody Success Scan at the studio</strong> — after your call,
                 you&apos;re invited in for a medical-grade body composition scan (body fat %,
@@ -56,7 +54,7 @@ export default function SalesLetter() {
                 or not.
               </p>
             </li>
-            <li className="rounded-2xl bg-white p-5 shadow-sm">
+            <li className="rounded-2xl border border-line bg-white p-5 shadow-sm">
               <p>
                 <strong>A straight answer</strong> — if we&apos;re not the right fit, Coach Nate
                 will tell you and point you toward what is.
@@ -181,7 +179,7 @@ export default function SalesLetter() {
                 name: 'Eunice',
               },
             ].map((r) => (
-              <blockquote key={r.name} className="rounded-2xl bg-white p-5 shadow-sm">
+              <blockquote key={r.name} className="rounded-2xl border border-line bg-white p-5 shadow-sm">
                 <p className="text-star" aria-hidden>
                   ★★★★★
                 </p>
@@ -195,16 +193,10 @@ export default function SalesLetter() {
         {/* ── Coach Nate ──────────────────────────────────────────────── */}
         <section className="mx-auto max-w-3xl px-4 pt-16">
           <div className="overflow-hidden rounded-2xl bg-sand">
-            <div className="relative w-full bg-line" style={{ aspectRatio: '3 / 2' }}>
-              <Image
-                src="/images/coach-nate.jpg"
-                alt="Coach Nate coaching a member during a 30-minute session at Fit Body Boot Camp Matthews"
-                fill
-                loading="lazy"
-                sizes="(max-width: 768px) 100vw, 768px"
-                className="object-cover"
-              />
-            </div>
+            {/* Image well intentionally removed: /images/coach-nate.jpg is a labeled
+                placeholder graphic ("Replace with real action shot"). Never ship a
+                placeholder or stock here — restore the well when the real coaching
+                action shot exists. Spec + framing: design/shot-list.md */}
             <div className="p-6 md:p-8">
               <p className="eyebrow mb-3">Who you&apos;ll be sitting with</p>
               <h2 className="h-section">Meet Coach Nate</h2>
@@ -219,7 +211,7 @@ export default function SalesLetter() {
                   My job isn&apos;t to yell at you. It&apos;s to build you a plan you can
                   actually live with — and then make sure you&apos;re never doing it alone.
                 </p>
-                <p>
+                <p className="kicker-bar font-semibold">
                   When you apply below, you&apos;re not getting a salesperson. You&apos;re
                   getting me.
                 </p>

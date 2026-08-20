@@ -13,11 +13,14 @@ export function CtaButton({
   children,
   sub,
   className = '',
+  dark = false,
 }: {
   href: string;
   children: React.ReactNode;
   sub?: string;
   className?: string;
+  /** Set when the button sits on a bg-ink band — keeps the sub caption AA-legible. */
+  dark?: boolean;
 }) {
   // Resolve UTMs client-side after mount (localStorage), fall back to plain href for SSR.
   const [resolved, setResolved] = useState(href);
@@ -32,7 +35,11 @@ export function CtaButton({
       >
         {children}
       </Link>
-      {sub && <p className="mt-2 text-center text-sm text-graphite/70">{sub}</p>}
+      {sub && (
+        <p className={`mt-2 text-center text-sm ${dark ? 'text-silver' : 'text-graphite/70'}`}>
+          {sub}
+        </p>
+      )}
     </div>
   );
 }

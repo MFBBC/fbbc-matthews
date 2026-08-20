@@ -103,7 +103,11 @@ export default function VslHero({
           </p>
 
           <div className="mt-8">
-            <CtaButton href={dest} sub="Pick a time in 30 seconds · No credit card · Leave with a plan either way">
+            <CtaButton
+              href={dest}
+              dark
+              sub="Pick a time in 30 seconds · No credit card · Leave with a plan either way"
+            >
               {CTA_LABEL}
             </CtaButton>
           </div>

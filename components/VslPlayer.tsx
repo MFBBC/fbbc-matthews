@@ -145,9 +145,8 @@ export default function VslPlayer({ onPlay }: { onPlay?: () => void }) {
               </svg>
             </span>
           </span>
-          <span className="absolute bottom-3 left-0 right-0 text-center text-sm font-semibold text-white drop-shadow">
-            Tap to play · 4 minutes · captions on
-          </span>
+          {/* No text overlay: the poster has its own baked-in title/duration lettering,
+              and the duration line renders directly below the frame (VslHero). */}
         </button>
       ) : PROVIDER === 'mp4' && VIDEO_ID ? (
         <video
