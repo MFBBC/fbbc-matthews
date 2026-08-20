@@ -26,7 +26,7 @@ export default function TransformationCarousel() {
         {TRANSFORMATIONS.map((t) => (
           <li
             key={t.name}
-            className="w-[78%] flex-none snap-center md:w-auto"
+            className="w-[86%] flex-none snap-center md:w-auto"
           >
             <figure className="overflow-hidden rounded-2xl bg-white shadow-md">
               <div className="relative w-full bg-sand" style={{ aspectRatio: '4 / 5' }}>
@@ -35,7 +35,7 @@ export default function TransformationCarousel() {
                   alt={`${t.name}'s before and after transformation — ${t.lbs} pounds lost`}
                   fill
                   loading="lazy"
-                  sizes="(max-width: 768px) 78vw, 33vw"
+                  sizes="(max-width: 768px) 86vw, 33vw"
                   className="object-cover"
                 />
               </div>

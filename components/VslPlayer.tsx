@@ -135,6 +135,7 @@ export default function VslPlayer({ onPlay }: { onPlay?: () => void }) {
             alt="Coach Nate — tap to play the 4-minute video"
             fill
             priority
+            quality={70}
             sizes="(max-width: 768px) 100vw, 768px"
             className="object-cover"
           />

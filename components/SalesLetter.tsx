@@ -221,39 +221,67 @@ export default function SalesLetter() {
         </section>
 
         {/* ── What happens next ───────────────────────────────────────── */}
-        <section className="mx-auto max-w-3xl px-4 pt-16">
-          <p className="eyebrow mb-3">No surprises</p>
-          <h2 className="h-section">Here&apos;s Exactly What Happens Next</h2>
-          <ol className="mt-8 space-y-6">
-            <li>
-              <h3 className="font-display text-xl font-bold uppercase">1. Apply below</h3>
-              <p className="mt-1 leading-relaxed">
-                60 seconds, a few questions — so we make your time count and Coach Nate can
-                prepare for <em>your</em> situation. Then grab a call time that works for you.
-              </p>
-            </li>
-            <li>
-              <h3 className="font-display text-xl font-bold uppercase">
-                2. Your Transformation Call
-              </h3>
-              <p className="mt-1 leading-relaxed">
-                20 minutes on the phone with Coach Nate — from your couch, your car, your lunch
-                break. You&apos;ll talk about where you are, where you want to be, and he&apos;ll
-                map the exact plan to bridge the gap. You decide from there: if it&apos;s a fit,
-                you pick your start date. If it&apos;s not, he&apos;ll say so — zero pressure.
-              </p>
-            </li>
-            <li>
-              <h3 className="font-display text-xl font-bold uppercase">
-                3. Your InBody Success Scan
-              </h3>
-              <p className="mt-1 leading-relaxed">
-                Then come meet us. Your first studio visit starts with a free medical-grade
-                InBody scan — your official baseline: body fat %, muscle mass, metabolic rate.
-                It&apos;s the line in the sand your whole transformation gets measured against.
-              </p>
-            </li>
-          </ol>
+        {/* Mist chapter-band: breaks the long white stretch between the proof
+            sections and the FAQ (mobile thumb-scroll relief). */}
+        <section className="mt-16 border-y border-line bg-mist px-4 py-14">
+          <div className="mx-auto max-w-3xl">
+            <p className="eyebrow mb-3">No surprises</p>
+            <h2 className="h-section">Here&apos;s Exactly What Happens Next</h2>
+            <ol className="mt-8 space-y-8">
+              <li className="flex gap-4">
+                <span
+                  className="font-display text-4xl font-black leading-none text-fbblue"
+                  aria-hidden
+                >
+                  01
+                </span>
+                <div>
+                  <h3 className="font-display text-xl font-bold uppercase">Apply below</h3>
+                  <p className="mt-1 leading-relaxed">
+                    60 seconds, a few questions — so we make your time count and Coach Nate can
+                    prepare for <em>your</em> situation. Then grab a call time that works for you.
+                  </p>
+                </div>
+              </li>
+              <li className="flex gap-4">
+                <span
+                  className="font-display text-4xl font-black leading-none text-fbblue"
+                  aria-hidden
+                >
+                  02
+                </span>
+                <div>
+                  <h3 className="font-display text-xl font-bold uppercase">
+                    Your Transformation Call
+                  </h3>
+                  <p className="mt-1 leading-relaxed">
+                    20 minutes on the phone with Coach Nate — from your couch, your car, your lunch
+                    break. You&apos;ll talk about where you are, where you want to be, and he&apos;ll
+                    map the exact plan to bridge the gap. You decide from there: if it&apos;s a fit,
+                    you pick your start date. If it&apos;s not, he&apos;ll say so — zero pressure.
+                  </p>
+                </div>
+              </li>
+              <li className="flex gap-4">
+                <span
+                  className="font-display text-4xl font-black leading-none text-fbblue"
+                  aria-hidden
+                >
+                  03
+                </span>
+                <div>
+                  <h3 className="font-display text-xl font-bold uppercase">
+                    Your InBody Success Scan
+                  </h3>
+                  <p className="mt-1 leading-relaxed">
+                    Then come meet us. Your first studio visit starts with a free medical-grade
+                    InBody scan — your official baseline: body fat %, muscle mass, metabolic rate.
+                    It&apos;s the line in the sand your whole transformation gets measured against.
+                  </p>
+                </div>
+              </li>
+            </ol>
+          </div>
         </section>
 
         {/* ── FAQ ─────────────────────────────────────────────────────── */}
@@ -262,7 +290,7 @@ export default function SalesLetter() {
           <h2 className="h-section">What You&apos;re Probably Wondering</h2>
           <div className="mt-8 space-y-6">
             {FAQS.map((f) => (
-              <div key={f.q}>
+              <div key={f.q} className="border-l-2 border-line pl-4">
                 <h3 className="text-lg font-bold">&ldquo;{f.q}&rdquo;</h3>
                 <p className="mt-1 leading-relaxed text-steel">{f.a}</p>
               </div>
