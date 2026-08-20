@@ -27,12 +27,22 @@ anonymous quota 0). LCP/CLS measured via Playwright + msedge with CDP
 Slow-4G/4x-CPU emulation — harsher than PSI's default; treat absolute values
 as conservative. [verify with PSI when quota/key available]
 
-## Round 3 — design-loop-v3 · pending
+## Round 3 — design-loop-v3 · WINNER, FINAL (121 → 122 / 140)
+
+Preview: https://fbbc-matthews-butvncq74-matthews-fit-body-boot-camp.vercel.app/
 
 **Changed (deliberately small — last unblocked polish):** brand-blue
 `focus-visible` rings on CtaButton and StickyCta (were browser-default
 outlines on yellow); yellow inset focus ring on the video play button; subtle
 top shadow on the sticky bar so it reads as elevated above content.
+
+**Gates:** all pass (LCP 2.06s best run, CLS 0, 266KB, no breaks 320–1440).
+Focus rings verified by driving Tab and reading computed outline styles
+(blue 2px on CTA, yellow 2px on play button).
+
+**LOOP STOPPED — BLOCKED ON ASSETS** (+1 this round, and the only dimension
+under 8 is imagery authenticity, which needs the photos in shot-list.md).
+Final packet: WINNER.md, scorecard.md, ship-it.md, before-after/, shot-list.md.
 
 ## Round 2 — design-loop-v2 · WINNER (118 → 121 / 140)
 

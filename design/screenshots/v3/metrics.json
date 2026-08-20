@@ -1,0 +1,10 @@
+{
+  "lcpMs": 2056,
+  "cls": 0,
+  "fcpMs": 1688,
+  "shifts": [],
+  "transferKB": 266,
+  "count": 21,
+  "loadMs": 2351,
+  "conditions": "Slow4G 1.6Mbps/150ms RTT, 4x CPU, msedge headless, 390x844 mobile emu"
+}
