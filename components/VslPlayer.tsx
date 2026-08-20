@@ -128,7 +128,7 @@ export default function VslPlayer({ onPlay }: { onPlay?: () => void }) {
         <button
           onClick={start}
           aria-label="Play the 4-minute video"
-          className="group absolute inset-0 h-full w-full"
+          className="group absolute inset-0 h-full w-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-fbyellow"
         >
           <Image
             src={POSTER}

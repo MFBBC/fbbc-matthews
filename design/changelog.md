@@ -27,7 +27,26 @@ anonymous quota 0). LCP/CLS measured via Playwright + msedge with CDP
 Slow-4G/4x-CPU emulation — harsher than PSI's default; treat absolute values
 as conservative. [verify with PSI when quota/key available]
 
-## Round 2 — design-loop-v2 · pending
+## Round 3 — design-loop-v3 · pending
+
+**Changed (deliberately small — last unblocked polish):** brand-blue
+`focus-visible` rings on CtaButton and StickyCta (were browser-default
+outlines on yellow); yellow inset focus ring on the video play button; subtle
+top shadow on the sticky bar so it reads as elevated above content.
+
+## Round 2 — design-loop-v2 · WINNER (118 → 121 / 140)
+
+Preview: https://fbbc-matthews-juvlnt86q-matthews-fit-body-boot-camp.vercel.app/
+
+**Gates:** all pass. LCP runs 2060/2652/2792ms — pooled across v0/v1/v2 the
+distributions are statistically identical (same payload, same LCP element);
+poster now q70 (strictly fewer bytes). CLS 0. No breaks 320–1440.
+
+**Score deltas:** thumb-scroll 7→9 (mist chapter-band + 01/02/03 numerals +
+FAQ left rules), proof 7→8 (86% carousel cards). Nothing dropped.
+
+**Biggest remaining weakness:** imagery authenticity (6) — asset-blocked on
+real photography (see shot-list.md). No code change can fix it.
 
 **Changed:** "What Happens Next" wrapped in a mist chapter-band (`bg-mist`,
 `border-y border-line`) to break the white desert; steps restyled with large

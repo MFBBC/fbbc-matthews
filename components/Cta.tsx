@@ -30,7 +30,7 @@ export function CtaButton({
     <div className={`w-full ${className}`}>
       <Link
         href={resolved}
-        className="block w-full rounded-lg bg-fbyellow px-6 py-4 text-center font-display text-lg font-extrabold uppercase tracking-wide text-ink shadow-cta transition-colors hover:bg-fbyellowDark active:bg-fbyellowDark sm:mx-auto sm:max-w-md md:text-xl"
+        className="block w-full rounded-lg bg-fbyellow px-6 py-4 text-center font-display text-lg font-extrabold uppercase tracking-wide text-ink shadow-cta transition-colors hover:bg-fbyellowDark active:bg-fbyellowDark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fbblue sm:mx-auto sm:max-w-md md:text-xl"
         style={{ minHeight: 56 }}
       >
         {children}
@@ -76,14 +76,14 @@ export function StickyCta({
   return (
     <div
       aria-hidden={!show}
-      className={`fixed inset-x-0 bottom-0 z-50 border-t border-line bg-white/95 p-3 backdrop-blur transition-transform duration-300 md:hidden ${
+      className={`fixed inset-x-0 bottom-0 z-50 border-t border-line bg-white/95 p-3 shadow-[0_-4px_14px_rgba(0,0,0,0.08)] backdrop-blur transition-transform duration-300 md:hidden ${
         show ? 'translate-y-0' : 'translate-y-full'
       }`}
       style={{ paddingBottom: 'max(0.75rem, env(safe-area-inset-bottom))' }}
     >
       <Link
         href={resolved}
-        className="block w-full rounded-lg bg-fbyellow px-4 py-3.5 text-center font-display text-base font-extrabold uppercase tracking-wide text-ink"
+        className="block w-full rounded-lg bg-fbyellow px-4 py-3.5 text-center font-display text-base font-extrabold uppercase tracking-wide text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fbblue"
         style={{ minHeight: 52 }}
       >
         {label}
