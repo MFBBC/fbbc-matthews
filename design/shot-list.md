@@ -1,9 +1,13 @@
 # Shot list — what to photograph at the gym
 
-The page's biggest remaining ceiling is real Matthews photography. Until these
-exist, the design intentionally shows no placeholder or stock imagery.
+**Update 2026-08-20:** the owner delivered a 4-photo set. Item 1 is DONE —
+the coaching action shot is live in the Coach Nate panel
+(`public/images/coach-nate.jpg`). Three more real shots are cropped and
+waiting in `design/photos/` (nate-laughing.jpg, nate-floor.jpg,
+team-huddle.jpg) for future sections/ads — items 3 and 4 below are largely
+covered by them. Item 2 (hero poster with a face) is still open.
 
-## 1. Coach Nate action shot (unblocks the "Meet Coach Nate" image well)
+## 1. ✅ DONE — Coach Nate action shot (unblocks the "Meet Coach Nate" image well)
 - **Subject:** Nate mid-coaching — crouched next to a member at a rower or
   during a floor exercise, talking to them, both faces visible.
 - **Framing:** landscape 3:2, subject in the left two-thirds, shot from

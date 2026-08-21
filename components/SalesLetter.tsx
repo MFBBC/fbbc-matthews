@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { CtaButton } from '@/components/Cta';
 import TransformationCarousel from '@/components/TransformationCarousel';
 import { BIZ } from '@/lib/business';
@@ -193,10 +194,17 @@ export default function SalesLetter() {
         {/* ── Coach Nate ──────────────────────────────────────────────── */}
         <section className="mx-auto max-w-3xl px-4 pt-16">
           <div className="overflow-hidden rounded-2xl bg-sand">
-            {/* Image well intentionally removed: /images/coach-nate.jpg is a labeled
-                placeholder graphic ("Replace with real action shot"). Never ship a
-                placeholder or stock here — restore the well when the real coaching
-                action shot exists. Spec + framing: design/shot-list.md */}
+            {/* Real action shot (shot-list.md item 1) — replaced the placeholder 2026-08-20. */}
+            <div className="relative w-full bg-line" style={{ aspectRatio: '3 / 2' }}>
+              <Image
+                src="/images/coach-nate.jpg"
+                alt="Coach Nate coaching a member through a plank during a 30-minute session at Fit Body Boot Camp Matthews"
+                fill
+                loading="lazy"
+                sizes="(max-width: 768px) 100vw, 768px"
+                className="object-cover"
+              />
+            </div>
             <div className="p-6 md:p-8">
               <p className="eyebrow mb-3">Who you&apos;ll be sitting with</p>
               <h2 className="h-section">Meet Coach Nate</h2>
