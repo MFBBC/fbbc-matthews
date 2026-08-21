@@ -1,5 +1,15 @@
 # Design loop changelog
 
+## Addendum — real Coach Nate photo (post-loop, same day)
+
+Owner delivered a 4-photo set. The coaching action shot now fills the
+restored image well in the Coach Nate panel (shot-list item 1 ✅). Verified
+on preview: renders correctly, gates unchanged (LCP 2.14s, CLS 0, initial
+transfer 266KB — photo is lazy, below fold). Imagery authenticity 6 → 8;
+**final total 124/140**. Remaining imagery ceiling: hero poster still has no
+human face (shot-list item 2). Three more real photos parked in
+design/photos/ for future sections and ad creative.
+
 ## Round 1 — design-loop-v1 · WINNER (108 → 118 / 140)
 
 Preview: https://fbbc-matthews-r4ul5q0hr-matthews-fit-body-boot-camp.vercel.app/

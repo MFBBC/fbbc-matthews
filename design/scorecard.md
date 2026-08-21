@@ -12,14 +12,14 @@ dimension dropping 2+ and all hard gates passing.
 | 5 | Color & contrast | **5 · gate fail** | **9** | 9 | 9 |
 | 6 | CTA prominence | 9 | 9 | 9 | 9 |
 | 7 | Proof presentation | 7 | 7 | **8** | 8 |
-| 8 | Imagery authenticity | **4** | **6** | 6 | 6 · asset-blocked |
+| 8 | Imagery authenticity | **4** | **6** | 6 | 6 → **8** (real coach photo added post-loop) |
 | 9 | Whitespace & rhythm | 8 | 9 | 9 | 9 |
 | 10 | Motion restraint | 9 | 9 | 9 | 9 |
 | 11 | Form/interaction UX | 8 | 8 | 8 | **9** |
 | 12 | Performance craft | 9 | 9 | 9 | 9 |
 | 13 | Brand coherence | 9 | 9 | 9 | 9 |
 | 14 | Slop detection | 8 | 9 | 9 | 9 |
-| | **Total** | **108** | **118** | **121** | **122** |
+| | **Total** | **108** | **118** | **121** | **122 → 124** with the real photo |
 
 ## Hard gates by round
 
