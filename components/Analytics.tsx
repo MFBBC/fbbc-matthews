@@ -3,9 +3,16 @@
 import Script from 'next/script';
 import { useEffect } from 'react';
 import { captureUtms } from '@/lib/utm';
+import { abVariants } from '@/lib/tracking';
 
 const PIXEL = process.env.NEXT_PUBLIC_META_PIXEL_ID;
 const GA4 = process.env.NEXT_PUBLIC_GA4_ID;
+
+// PostHog project API key (public by design, phc_…). Env override wins;
+// the constant below lets the owner ship it without touching Vercel settings.
+const POSTHOG_KEY = process.env.NEXT_PUBLIC_POSTHOG_KEY || '';
+const POSTHOG_HOST = process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://us.i.posthog.com';
+const POSTHOG_ASSETS = POSTHOG_HOST.replace('.i.posthog.com', '-assets.i.posthog.com');
 
 export default function Analytics() {
   useEffect(() => {
@@ -49,6 +56,26 @@ fbq('track', 'PageView');`}
             />
           </noscript>
         </>
+      )}
+      {POSTHOG_KEY && (
+        <Script
+          src={`${POSTHOG_ASSETS}/static/array.js`}
+          strategy="afterInteractive"
+          onLoad={() => {
+            try {
+              const ph = (window as any).posthog;
+              ph.init(POSTHOG_KEY, {
+                api_host: POSTHOG_HOST,
+                defaults: '2026-05-30',
+                enable_heatmaps: true,
+              });
+              // Every autocaptured click/pageview carries the A/B assignments too.
+              ph.register(abVariants());
+            } catch {
+              /* analytics must never break the page */
+            }
+          }}
+        />
       )}
       {GA4 && (
         <>

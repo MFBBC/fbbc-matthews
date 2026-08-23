@@ -16,6 +16,7 @@ declare global {
   interface Window {
     fbq?: (...args: unknown[]) => void;
     gtag?: (...args: unknown[]) => void;
+    posthog?: { capture?: (event: string, params?: Record<string, unknown>) => void };
   }
 }
 
@@ -24,16 +25,39 @@ const META_STANDARD: Record<string, string> = {
   CallBooked: 'Schedule',
 };
 
+/**
+ * Current A/B assignments, read fresh from the sticky cookies so every event
+ * on every page (/, /apply, /confirmed) carries them. Without this the
+ * headline test can never be scored against booked calls.
+ */
+export function abVariants(): Record<string, string> {
+  const out: Record<string, string> = {};
+  try {
+    document.cookie.split('; ').forEach((c) => {
+      const [k, v] = c.split('=');
+      if ((k === 'ab_headline' || k === 'ab_q1' || k === 'ab_skip_plan') && (v === 'a' || v === 'b')) {
+        out[k] = v;
+      }
+    });
+  } catch {}
+  return out;
+}
+
 export function track(event: string, params: Record<string, unknown> = {}) {
   if (typeof window === 'undefined') return;
+  const enriched = { ...abVariants(), ...params };
   // Meta: standard events via track(), everything else via trackCustom()
   if (window.fbq) {
     const std = META_STANDARD[event];
-    if (std) window.fbq('track', std, params);
-    else window.fbq('trackCustom', event, params);
+    if (std) window.fbq('track', std, enriched);
+    else window.fbq('trackCustom', event, enriched);
   }
   // GA4
-  if (window.gtag) window.gtag('event', event, params);
+  if (window.gtag) window.gtag('event', event, enriched);
+  // PostHog (loaded in Analytics.tsx; silent no-op when absent)
+  try {
+    window.posthog?.capture?.(event, enriched);
+  } catch {}
 }
 
 /** Persist VSL watch depth so the skip-plan A/B test can read it later. */
