@@ -5,7 +5,9 @@ import { useEffect } from 'react';
 import { captureUtms } from '@/lib/utm';
 import { abVariants } from '@/lib/tracking';
 
-const PIXEL = process.env.NEXT_PUBLIC_META_PIXEL_ID;
+// Meta pixel: the FBBC "Launch Program" dataset (shared across franchise
+// funnels — the one the ad account optimizes on). Env override wins.
+const PIXEL = process.env.NEXT_PUBLIC_META_PIXEL_ID || '3379714395690243';
 const GA4 = process.env.NEXT_PUBLIC_GA4_ID;
 
 // PostHog project API key (public by design, phc_…). Env override wins;
