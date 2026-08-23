@@ -1,43 +1,47 @@
 import type { Metadata } from 'next';
 import { cookies } from 'next/headers';
 import { resolveVariant, AB_COOKIES } from '@/lib/flags';
-import { GymSchema, VideoSchema } from '@/components/Schema';
-import FunnelFooter from '@/components/FunnelFooter';
+import { GymSchema } from '@/components/Schema';
 import BrandHeader from '@/components/BrandHeader';
-import VslHero from '@/components/VslHero';
-import SalesLetter from '@/components/SalesLetter';
-import { FaqSchema } from '@/components/Schema';
-import { FAQS } from '@/components/SalesLetter';
+import FunnelFooter from '@/components/FunnelFooter';
+import QuizForm from '@/components/QuizForm';
+import QuizGate from '@/components/QuizGate';
 
 export const metadata: Metadata = {
-  title: 'The Reason Nothing Has Worked Isn’t You | Fit Body Boot Camp Matthews',
+  title: 'Free Transformation Assessment | Fit Body Boot Camp Matthews',
   description:
-    "In the next 4 minutes, Coach Nate reveals the 3 missing pieces behind every lasting transformation in his gym — and why every program you've tried was missing at least two of them.",
+    'Answer a few quick questions and Coach Nate builds your personalized transformation plan — free. For women in Matthews, Stallings & South Charlotte who are done starting over.',
   alternates: { canonical: '/' },
 };
 
 /**
- * Page 1 — VSL page. Minimal by design (spec):
- * pre-headline → headline → sub-headline → video → ONE CTA → trust strip. Nothing else.
- * The long-form content lives on /plan.
- *
- * A/B (headline test): variant B opens with the mirror-moment paragraph first,
- * callout second — per the VSL script's deployment notes.
- * A/B (skipPlan test): variant B sends 75%+ watchers straight to /apply.
+ * Page 1 — quiz-first front door (spec: qualify + make the lead feel seen +
+ * capture contact), then drop into the VSL page (/watch). Booking stays at
+ * /book. Visitors who already completed the quiz skip ahead via QuizGate.
  */
-export default function VslPage() {
+export default function QuizPage() {
   const c = cookies();
-  const headlineVariant = resolveVariant('headline', c.get(AB_COOKIES.headline)?.value);
-  const skipPlanVariant = resolveVariant('skipPlan', c.get(AB_COOKIES.skipPlan)?.value);
+  const q1Variant = resolveVariant('q1', c.get(AB_COOKIES.q1)?.value);
 
   return (
     <>
       <GymSchema />
-      <FaqSchema faqs={FAQS} />
-      <VideoSchema />
+      <QuizGate />
       <BrandHeader />
-      <VslHero headlineVariant={headlineVariant} skipPlanVariant={skipPlanVariant} />
-      <SalesLetter />
+      {/* Compact hook band above the quiz — same promise, no detour. */}
+      <section className="bg-ink px-4 pb-8 pt-8 text-center text-white md:pt-12">
+        <p className="eyebrow-onDark mb-3">
+          For women in Matthews, Stallings &amp; South Charlotte who are done starting over
+        </p>
+        <h1 className="h-section mx-auto max-w-2xl">
+          The Reason Nothing Has Worked <span className="text-fbyellow">Isn&rsquo;t You.</span>
+        </h1>
+        <p className="mx-auto mt-3 max-w-xl text-lg text-silver">
+          Answer a few quick questions — 60 seconds — and Coach Nate will build your plan
+          around <em>your</em> answers. Free either way.
+        </p>
+      </section>
+      <QuizForm q1Variant={q1Variant} dest="/watch" submitLabel="See My Next Step →" />
       <FunnelFooter />
     </>
   );

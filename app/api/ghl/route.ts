@@ -19,9 +19,15 @@ import { NextRequest, NextResponse } from 'next/server';
  */
 export async function POST(req: NextRequest) {
   const webhook = process.env.GHL_WEBHOOK_URL;
-  if (!webhook) {
+  // Free alternative to the (premium) inbound-webhook trigger: a Private
+  // Integration token (GHL Settings → Private Integrations, scope
+  // contacts.write) + the sub-account's Location ID.
+  const apiToken = process.env.GHL_API_TOKEN;
+  const locationId = process.env.GHL_LOCATION_ID;
+
+  if (!webhook && !(apiToken && locationId)) {
     // Dev-friendly: succeed silently so the quiz flow is testable without keys.
-    console.warn('[ghl] GHL_WEBHOOK_URL not set — payload dropped');
+    console.warn('[ghl] no GHL_WEBHOOK_URL and no GHL_API_TOKEN/GHL_LOCATION_ID — payload dropped');
     return NextResponse.json({ ok: true, dev: true });
   }
 
@@ -57,19 +63,73 @@ export async function POST(req: NextRequest) {
     source: 'website-quiz-application',
   };
 
-  try {
-    const res = await fetch(webhook, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    });
-    if (!res.ok) {
-      console.error('[ghl] webhook responded', res.status);
+  // Path 1 — inbound webhook (if the premium trigger ever exists).
+  if (webhook) {
+    try {
+      const res = await fetch(webhook, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) {
+        console.error('[ghl] webhook responded', res.status);
+        return NextResponse.json({ ok: false }, { status: 502 });
+      }
+      return NextResponse.json({ ok: true });
+    } catch (e) {
+      console.error('[ghl] webhook error', e);
       return NextResponse.json({ ok: false }, { status: 502 });
+    }
+  }
+
+  // Path 2 — direct contact upsert via the GHL API (free; no premium trigger).
+  try {
+    const headers = {
+      Authorization: `Bearer ${apiToken}`,
+      Version: '2021-07-28',
+      'Content-Type': 'application/json',
+    };
+    const up = await fetch('https://services.leadconnectorhq.com/contacts/upsert', {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({
+        locationId,
+        firstName: payload.first_name,
+        phone: payload.phone,
+        email: payload.email || undefined,
+        tags: payload.tags,
+        source: payload.source,
+      }),
+    });
+    if (!up.ok) {
+      console.error('[ghl] contact upsert responded', up.status, await up.text());
+      return NextResponse.json({ ok: false }, { status: 502 });
+    }
+    const contact = (await up.json()) as { contact?: { id?: string } };
+    const contactId = contact?.contact?.id;
+    // Quiz answers + attribution land as a note on the contact timeline, so
+    // whoever follows up sees them without custom-field mapping.
+    if (contactId) {
+      const noteLines = [
+        `Website quiz (${stage})`,
+        `Goal: ${payload.customField.goal || '—'}`,
+        `Wanting change for: ${payload.customField.how_long || '—'}`,
+        `Obstacle: ${payload.customField.obstacle || '—'}`,
+        `Readiness: ${payload.customField.readiness_score || '—'}/10`,
+        `Page: ${payload.attribution.page} · q1 variant ${payload.attribution.ab_q1_variant}`,
+        Object.entries(utms).length
+          ? `UTMs: ${Object.entries(utms).map(([k, v]) => `${k}=${v}`).join(' ')}`
+          : '',
+      ].filter(Boolean);
+      await fetch(`https://services.leadconnectorhq.com/contacts/${contactId}/notes`, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({ body: noteLines.join('\n') }),
+      }).catch(() => {});
     }
     return NextResponse.json({ ok: true });
   } catch (e) {
-    console.error('[ghl] webhook error', e);
+    console.error('[ghl] api upsert error', e);
     return NextResponse.json({ ok: false }, { status: 502 });
   }
 }

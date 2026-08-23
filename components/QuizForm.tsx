@@ -41,7 +41,16 @@ type Answers = {
   readiness_score: number;
 };
 
-export default function QuizForm({ q1Variant }: { q1Variant: Variant }) {
+export default function QuizForm({
+  q1Variant,
+  dest = '/book',
+  submitLabel = 'Submit My Application →',
+}: {
+  q1Variant: Variant;
+  /** Where completion routes to: /book (classic) or /watch (quiz-first funnel). */
+  dest?: string;
+  submitLabel?: string;
+}) {
   const router = useRouter();
   const [step, setStep] = useState(1);
   const [a, setA] = useState<Answers>({
@@ -81,7 +90,7 @@ export default function QuizForm({ q1Variant }: { q1Variant: Variant }) {
         },
         utms: getUtms(),
         ab_q1_variant: q1Variant,
-        page: '/apply',
+        page: typeof window !== 'undefined' ? window.location.pathname : '/',
       }),
     }).catch(() => {});
   };
@@ -118,9 +127,10 @@ export default function QuizForm({ q1Variant }: { q1Variant: Variant }) {
         'fbbc_contact',
         JSON.stringify({ first_name: a.first_name, phone: a.phone, email: a.email })
       );
+      localStorage.setItem('fbbc_quiz_done', '1');
     } catch {}
-    // No dead-end thank-you: route straight to booking (spec)
-    router.push('/book');
+    // No dead-end thank-you: route straight to the next step (spec)
+    router.push(dest);
   };
 
   const optionBtn =
@@ -293,7 +303,7 @@ export default function QuizForm({ q1Variant }: { q1Variant: Variant }) {
             className="mt-10 w-full rounded-lg bg-fbyellow px-6 py-4 font-display text-lg font-extrabold uppercase tracking-wide text-ink shadow-cta disabled:opacity-60 md:text-xl"
             style={{ minHeight: 56 }}
           >
-            {submitting ? 'One second…' : 'Submit My Application →'}
+            {submitting ? 'One second…' : submitLabel}
           </button>
           <p className="mt-3 text-center text-xs leading-relaxed text-graphite/60">
             By submitting, you agree to our{' '}

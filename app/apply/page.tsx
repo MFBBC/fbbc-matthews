@@ -1,11 +1,9 @@
-import { permanentRedirect } from 'next/navigation';
+import { redirect } from 'next/navigation';
 
 /**
- * v6: quiz removed to shorten the path (friction test). Booking captures
- * contact info via the GHL calendar form instead. To restore the quiz:
- * put back the previous version of this file (QuizForm is still in
- * components/) and point CTAs back to /apply.
+ * v7: the quiz is the front door now — old /apply links go to the homepage
+ * quiz. (Temporary redirect on purpose: /apply's role has changed twice.)
  */
 export default function ApplyRedirect() {
-  permanentRedirect('/book');
+  redirect('/');
 }
