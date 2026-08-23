@@ -46,7 +46,12 @@ export async function POST(req: NextRequest) {
     first_name: body.first_name ?? '',
     phone: body.phone ?? '',
     email: body.email ?? '',
-    tags: stage === 'completed' ? ['application-completed'] : ['application-started'],
+    // 'audience' + 'lead' fire the existing GHL text-automation trigger;
+    // the application-* tags stay for stage tracking.
+    tags:
+      stage === 'completed'
+        ? ['application-completed', 'audience', 'lead']
+        : ['application-started', 'audience', 'lead'],
     remove_tags: stage === 'completed' ? ['application-started'] : [],
     customField: {
       goal: answers.goal ?? '',
