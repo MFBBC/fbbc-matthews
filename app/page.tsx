@@ -37,9 +37,9 @@ export default function VslPage() {
       <VideoSchema />
       <BrandHeader />
       <VslHero headlineVariant={headlineVariant} skipPlanVariant={skipPlanVariant} />
-      {/* Second door: GHL opt-in form (URL baked into LeadOptIn) — leads land
-          in GHL contacts directly, no webhook needed. */}
-      <SalesLetter showOptIn />
+      {/* The opt-in second door only renders when the GHL webhook is configured —
+          a lead form that drops leads is worse than no form. */}
+      <SalesLetter showOptIn={Boolean(process.env.GHL_WEBHOOK_URL)} />
       <FunnelFooter />
     </>
   );

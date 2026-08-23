@@ -1,21 +1,10 @@
 'use client';
 
-import Script from 'next/script';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { CtaButton } from '@/components/Cta';
 import { track } from '@/lib/tracking';
 import { getUtms } from '@/lib/utm';
 import { BIZ } from '@/lib/business';
-
-/**
- * GHL "Lead Opt In.v3" form (free form-submission workflow trigger — the
- * inbound-webhook trigger is a GHL premium feature). Leads land directly in
- * GHL contacts. Env override wins; empty string falls back to the custom
- * form + /api/ghl webhook path below.
- */
-const OPTIN_FORM_URL =
-  process.env.NEXT_PUBLIC_GHL_OPTIN_FORM_URL ||
-  'https://api.leadconnectorhq.com/widget/form/qBeydDoksD3JstewWFBe';
 
 /**
  * Low-commitment second door: "have Coach Nate text you first."
@@ -29,80 +18,6 @@ const OPTIN_FORM_URL =
  * form falls back to showing the gym's phone number — never silently drop a lead.
  */
 export default function LeadOptIn({ id }: { id?: string }) {
-  if (OPTIN_FORM_URL) return <LeadOptInEmbed id={id} />;
-  return <LeadOptInCustom id={id} />;
-}
-
-/** GHL form embed inside the styled second-door section. */
-function LeadOptInEmbed({ id }: { id?: string }) {
-  const [src, setSrc] = useState(OPTIN_FORM_URL);
-  const [submitted, setSubmitted] = useState(false);
-
-  // Pass stored ad attribution through to the GHL form's URL params.
-  useEffect(() => {
-    try {
-      const u = new URL(OPTIN_FORM_URL);
-      Object.entries(getUtms()).forEach(([k, v]) => {
-        if (v && k !== 'landed_at') u.searchParams.set(k, String(v));
-      });
-      setSrc(u.toString());
-    } catch {}
-  }, []);
-
-  // Best-effort submit detection (GHL's embed posts messages on submit):
-  // fire the Meta/GA4/PostHog Lead event and reveal the "skip the wait" nudge.
-  useEffect(() => {
-    const onMsg = (e: MessageEvent) => {
-      const d = typeof e.data === 'string' ? e.data : JSON.stringify(e.data ?? '');
-      if (/form[_-:]?submit|submitted|thank[_-:]?you/i.test(d)) {
-        setSubmitted(true);
-        track('LeadOptIn');
-      }
-    };
-    window.addEventListener('message', onMsg);
-    return () => window.removeEventListener('message', onMsg);
-  }, []);
-
-  return (
-    <section id={id} className="mx-auto max-w-3xl px-4 pt-16">
-      <div className="rounded-2xl border border-line bg-mist p-6 md:p-8">
-        <p className="eyebrow mb-3">Not ready to book a call?</p>
-        <h2 className="h-section">Have Coach Nate Text You First</h2>
-        <p className="mt-4 text-lg leading-relaxed text-graphite">
-          Booking a call is a bigger first step than some people want — that&apos;s fine.
-          Leave your name and number instead. Coach Nate will text you personally: ask him
-          anything, or set up a free trial session whenever you&apos;re ready. No pressure,
-          no spam — one real human, texting back.
-        </p>
-        <div className="mt-6 overflow-hidden rounded-xl bg-white">
-          <iframe
-            src={src}
-            id={`${id}-ghl-form`}
-            title="Have Coach Nate text you first"
-            className="w-full"
-            style={{ minHeight: 420, border: 0 }}
-            scrolling="no"
-            loading="lazy"
-          />
-        </div>
-        {submitted && (
-          <div className="mt-6">
-            <p className="mb-3 text-center font-bold">
-              Want to skip the wait? Put a time on the calendar now:
-            </p>
-            <CtaButton href="/book">Book My Free Call →</CtaButton>
-          </div>
-        )}
-        {/* Official GHL embed helper: resizes the iframe to the form's height */}
-        <Script src="https://link.msgsndr.com/js/form_embed.js" strategy="lazyOnload" />
-      </div>
-    </section>
-  );
-}
-
-/** Custom-form path (unused while OPTIN_FORM_URL is set; kept for the day a
-    paid inbound-webhook trigger exists — posts to /api/ghl, stage "optin"). */
-function LeadOptInCustom({ id }: { id?: string }) {
   const [firstName, setFirstName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
