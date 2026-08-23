@@ -22,7 +22,6 @@ declare global {
 
 const META_STANDARD: Record<string, string> = {
   ApplyCompleted: 'Lead',
-  LeadOptIn: 'Lead',
   CallBooked: 'Schedule',
 };
 

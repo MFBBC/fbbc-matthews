@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import { CtaButton } from '@/components/Cta';
-import LeadOptIn from '@/components/LeadOptIn';
 import TransformationCarousel from '@/components/TransformationCarousel';
 import { BIZ } from '@/lib/business';
 
@@ -30,11 +29,8 @@ const CTA = 'Book My Free Transformation Call \u2192';
 /**
  * The full approved sales letter, in spec order. Every CTA → /book (quiz removed v6).
  * Rendered on the homepage below the VSL hero (single-page funnel).
- *
- * showOptIn renders the "text me first" second door (LeadOptIn) — only pass
- * true when GHL_WEBHOOK_URL is configured, so the form never drops leads.
  */
-export default function SalesLetter({ showOptIn = false }: { showOptIn?: boolean }) {
+export default function SalesLetter() {
   return (
     <div className="pb-10">
       {/* ── Offer breakdown ─────────────────────────────────────────── */}
@@ -232,9 +228,6 @@ export default function SalesLetter({ showOptIn = false }: { showOptIn?: boolean
           </div>
         </section>
 
-        {/* ── Second door: text-first opt-in (right after meeting Nate) ── */}
-        {showOptIn && <LeadOptIn id="text-first" />}
-
         {/* ── What happens next ───────────────────────────────────────── */}
         {/* Mist chapter-band: breaks the long white stretch between the proof
             sections and the FAQ (mobile thumb-scroll relief). */}
@@ -312,9 +305,6 @@ export default function SalesLetter({ showOptIn = false }: { showOptIn?: boolean
             ))}
           </div>
         </section>
-
-        {/* ── Second door, second chance (objections just answered) ───── */}
-        {showOptIn && <LeadOptIn id="text-first-2" />}
 
         {/* ── 90-Day Promise ──────────────────────────────────────────── */}
         <section className="mx-auto max-w-3xl px-4 pt-16">

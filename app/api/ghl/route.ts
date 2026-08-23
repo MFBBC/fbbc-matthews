@@ -32,24 +32,15 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: false, error: 'invalid json' }, { status: 400 });
   }
 
-  const stage =
-    body.stage === 'completed' ? 'completed' : body.stage === 'optin' ? 'optin' : 'started';
+  const stage = body.stage === 'completed' ? 'completed' : 'started';
   const answers = (body.answers || {}) as Record<string, unknown>;
   const utms = (body.utms || {}) as Record<string, unknown>;
-
-  // optin = the "text me first" form: manual follow-up by the team, no
-  // application workflow involved.
-  const TAGS: Record<string, string[]> = {
-    started: ['application-started'],
-    completed: ['application-completed'],
-    optin: ['website-optin'],
-  };
 
   const payload = {
     first_name: body.first_name ?? '',
     phone: body.phone ?? '',
     email: body.email ?? '',
-    tags: TAGS[stage],
+    tags: stage === 'completed' ? ['application-completed'] : ['application-started'],
     remove_tags: stage === 'completed' ? ['application-started'] : [],
     customField: {
       goal: answers.goal ?? '',
@@ -63,7 +54,7 @@ export async function POST(req: NextRequest) {
       ab_q1_variant: body.ab_q1_variant ?? 'a',
       submitted_at: new Date().toISOString(),
     },
-    source: stage === 'optin' ? 'website-optin' : 'website-quiz-application',
+    source: 'website-quiz-application',
   };
 
   try {
