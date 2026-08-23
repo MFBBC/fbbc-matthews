@@ -1,5 +1,6 @@
 'use client';
 
+import Script from 'next/script';
 import { useEffect, useState } from 'react';
 import { CtaButton } from '@/components/Cta';
 import { track } from '@/lib/tracking';
@@ -73,16 +74,14 @@ function LeadOptInEmbed({ id }: { id?: string }) {
           anything, or set up a free trial session whenever you&apos;re ready. No pressure,
           no spam — one real human, texting back.
         </p>
-        {/* NOTE: deliberately NOT using GHL's form_embed.js helper — it wipes the
-            src of duplicate embeds of the same form (verified). Fixed height +
-            internal scroll instead. */}
         <div className="mt-6 overflow-hidden rounded-xl bg-white">
           <iframe
             src={src}
             id={`${id}-ghl-form`}
             title="Have Coach Nate text you first"
             className="w-full"
-            style={{ minHeight: 640, border: 0 }}
+            style={{ minHeight: 420, border: 0 }}
+            scrolling="no"
             loading="lazy"
           />
         </div>
@@ -94,6 +93,8 @@ function LeadOptInEmbed({ id }: { id?: string }) {
             <CtaButton href="/book">Book My Free Call →</CtaButton>
           </div>
         )}
+        {/* Official GHL embed helper: resizes the iframe to the form's height */}
+        <Script src="https://link.msgsndr.com/js/form_embed.js" strategy="lazyOnload" />
       </div>
     </section>
   );
