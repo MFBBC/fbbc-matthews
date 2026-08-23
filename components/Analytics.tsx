@@ -10,7 +10,8 @@ const GA4 = process.env.NEXT_PUBLIC_GA4_ID;
 
 // PostHog project API key (public by design, phc_…). Env override wins;
 // the constant below lets the owner ship it without touching Vercel settings.
-const POSTHOG_KEY = process.env.NEXT_PUBLIC_POSTHOG_KEY || '';
+const POSTHOG_KEY =
+  process.env.NEXT_PUBLIC_POSTHOG_KEY || 'phc_xu8sQzHhf7DCLGy2BjLj2RZNgi5ZYE93y5a8qpkLuLJY';
 const POSTHOG_HOST = process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://us.i.posthog.com';
 const POSTHOG_ASSETS = POSTHOG_HOST.replace('.i.posthog.com', '-assets.i.posthog.com');
 
