@@ -8,6 +8,11 @@ import type { Variant } from '@/lib/flags';
 
 const CTA_LABEL = 'Book My Free Transformation Call →';
 
+// Letter-first interim mode: until the VSL exists (video ships 2026-09-11),
+// hide the player entirely — visitors must never see a "not configured" error.
+// Flips back to video mode automatically once NEXT_PUBLIC_VSL_ID is set.
+const HAS_VIDEO = Boolean(process.env.NEXT_PUBLIC_VSL_ID);
+
 /**
  * Page 1 — VSL page, FBBC brand system.
  *
@@ -73,12 +78,23 @@ export default function VslHero({
             <>
               <h1 className="h-display text-center">
                 The Reason Nothing Has Worked{' '}
-                <span className="text-fbyellow">Isn&rsquo;t You.</span> Watch This.
+                <span className="text-fbyellow">Isn&rsquo;t You.</span>
+                {HAS_VIDEO && <> Watch This.</>}
               </h1>
               <p className="mx-auto mt-5 max-w-xl text-center text-lg text-silver">
-                In the next 4 minutes, Coach Nate reveals the 3 missing pieces behind every
-                lasting transformation in his gym — and why every program you&apos;ve tried was
-                missing at least two of them.
+                {HAS_VIDEO ? (
+                  <>
+                    In the next 4 minutes, Coach Nate reveals the 3 missing pieces behind every
+                    lasting transformation in his gym — and why every program you&apos;ve tried
+                    was missing at least two of them.
+                  </>
+                ) : (
+                  <>
+                    Below, Coach Nate lays out the 3 missing pieces behind every lasting
+                    transformation in his gym — and why every program you&apos;ve tried was
+                    missing at least two of them.
+                  </>
+                )}
               </p>
             </>
           ) : (
@@ -88,19 +104,33 @@ export default function VslHero({
                 <span className="text-fbyellow">You Disappeared From Your Own List.</span>
               </h1>
               <p className="mx-auto mt-5 max-w-xl text-center text-lg text-silver">
-                It was never you. In the next 4 minutes, Coach Nate reveals the 3 missing
-                pieces behind every lasting transformation in his gym — and why every program
-                you&apos;ve tried was missing at least two of them.
+                {HAS_VIDEO ? (
+                  <>
+                    It was never you. In the next 4 minutes, Coach Nate reveals the 3 missing
+                    pieces behind every lasting transformation in his gym — and why every
+                    program you&apos;ve tried was missing at least two of them.
+                  </>
+                ) : (
+                  <>
+                    It was never you. Below, Coach Nate lays out the 3 missing pieces behind
+                    every lasting transformation in his gym — and why every program
+                    you&apos;ve tried was missing at least two of them.
+                  </>
+                )}
               </p>
             </>
           )}
 
-          <div className="mt-8 overflow-hidden rounded-xl ring-2 ring-fbblue">
-            <VslPlayer onPlay={onPlay} />
-          </div>
-          <p className="mt-3 text-center text-sm font-medium uppercase tracking-widest text-silver">
-            4 min 30 sec · Sound on
-          </p>
+          {HAS_VIDEO && (
+            <>
+              <div className="mt-8 overflow-hidden rounded-xl ring-2 ring-fbblue">
+                <VslPlayer onPlay={onPlay} />
+              </div>
+              <p className="mt-3 text-center text-sm font-medium uppercase tracking-widest text-silver">
+                4 min 30 sec · Sound on
+              </p>
+            </>
+          )}
 
           <div className="mt-8">
             <CtaButton
@@ -118,9 +148,10 @@ export default function VslHero({
         </div>
       </section>
 
-      {/* Safety net for non-watchers */}
+      {/* Safety net for non-watchers (video mode only — in letter mode the
+          letter below already carries the full argument) */}
       <div ref={sentinel} aria-hidden className="h-px" />
-      {showSafetyNet && !played && (
+      {HAS_VIDEO && showSafetyNet && !played && (
         <section className="border-b border-line bg-mist">
           <div className="mx-auto max-w-3xl px-4 py-10">
             <p className="eyebrow mb-3">Not a video person? Read this instead</p>
