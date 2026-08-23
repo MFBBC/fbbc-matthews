@@ -54,7 +54,7 @@ function LeadOptInEmbed({ id }: { id?: string }) {
   useEffect(() => {
     const onMsg = (e: MessageEvent) => {
       const d = typeof e.data === 'string' ? e.data : JSON.stringify(e.data ?? '');
-      if (/form[_:-]?submit|submitted|thank[_:-]?you/i.test(d)) {
+      if (/form[_-:]?submit|submitted|thank[_-:]?you/i.test(d)) {
         setSubmitted(true);
         track('LeadOptIn');
       }
