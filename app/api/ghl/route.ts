@@ -131,6 +131,20 @@ export async function POST(req: NextRequest) {
         headers,
         body: JSON.stringify({ body: noteLines.join('\n') }),
       }).catch(() => {});
+
+      // Enroll into "Lead Conversion | 01 | System Check.v3" so the existing
+      // text automation fires. Enrolling twice (started + completed) is fine —
+      // GHL rejects the duplicate and we ignore it.
+      const workflowId =
+        process.env.GHL_WORKFLOW_ID || '4159cdc1-6e52-40eb-885c-9cd13f921480';
+      await fetch(
+        `https://services.leadconnectorhq.com/contacts/${contactId}/workflow/${workflowId}`,
+        { method: 'POST', headers, body: JSON.stringify({}) }
+      )
+        .then((wf) => {
+          if (!wf.ok) console.error('[ghl] workflow enroll responded', wf.status);
+        })
+        .catch(() => {});
     }
     return NextResponse.json({ ok: true });
   } catch (e) {
