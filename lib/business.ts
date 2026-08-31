@@ -11,7 +11,9 @@ export const BIZ = {
   geo: { lat: 35.1348, lng: -80.7565 },
   mapsEmbed:
     'https://www.google.com/maps?q=Fit+Body+Boot+Camp+1819+Sardis+Rd+N+Unit+330+Charlotte+NC+28270&output=embed',
-  rating: { value: '5.0', count: 47 }, // TODO: set count to the live Google review count
+  // TODO: 24 = last verified GBP count; update to live count and keep the on-page
+  // trust line count-free until reconciled.
+  rating: { value: '5.0', count: 24 },
 } as const;
 
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://fbbc-matthews.vercel.app';
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.matthewsfbbc.com';

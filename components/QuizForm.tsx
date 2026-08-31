@@ -63,8 +63,11 @@ export default function QuizForm({
     readiness_score: 7, // default 7 (spec)
   });
   const [contactError, setContactError] = useState('');
+  const [hint, setHint] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const startedSent = useRef(false);
+  const quizStartedSent = useRef(false);
+  const goalRef = useRef<HTMLInputElement>(null);
 
   const q1Text =
     q1Variant === 'b'
@@ -93,6 +96,20 @@ export default function QuizForm({
         page: typeof window !== 'undefined' ? window.location.pathname : '/',
       }),
     }).catch(() => {});
+  };
+
+  const completeGoal = () => {
+    if (!a.goal.trim()) {
+      setHint("One line is plenty — what's the #1 thing?");
+      goalRef.current?.focus();
+      return;
+    }
+    setHint('');
+    if (!quizStartedSent.current) {
+      quizStartedSent.current = true;
+      track('QuizStarted');
+    }
+    setStep(2);
   };
 
   const completeContact = () => {
@@ -137,7 +154,7 @@ export default function QuizForm({
     'w-full rounded-xl border-2 border-line bg-white px-5 py-4 text-left text-lg font-semibold transition-colors hover:border-ink active:border-ink';
 
   return (
-    <main className="mx-auto flex min-h-[100dvh] max-w-md flex-col px-4 pb-10 pt-8">
+    <main className="mx-auto flex max-w-md flex-col px-4 pb-10 pt-8">
       {/* Progress */}
       <div className="mb-2 flex items-center justify-between text-sm text-steel">
         <span>
@@ -167,33 +184,41 @@ export default function QuizForm({
 
       {step === 1 && (
         <section>
-          <h1 className="h-section">{q1Text}</h1>
+          <h2 className="h-section">{q1Text}</h2>
           <input
+            ref={goalRef}
             type="text"
             value={a.goal}
-            onChange={(e) => setA({ ...a, goal: e.target.value })}
-            onKeyDown={(e) => e.key === 'Enter' && a.goal.trim() && setStep(2)}
+            onChange={(e) => {
+              setA({ ...a, goal: e.target.value });
+              if (hint) setHint('');
+            }}
+            onKeyDown={(e) => e.key === 'Enter' && a.goal.trim() && completeGoal()}
             placeholder="One line is plenty…"
+            aria-label="Your #1 goal"
             autoFocus
             className="mt-6 w-full rounded-xl border-2 border-line bg-white px-5 py-4 text-lg outline-none focus:border-ink"
             style={{ minHeight: 56 }}
           />
+          {hint && <p className="mt-2 text-sm font-semibold text-fbblue">{hint}</p>}
           <button
-            onClick={() => a.goal.trim() && setStep(2)}
-            disabled={!a.goal.trim()}
-            className="mt-6 w-full rounded-lg bg-fbyellow px-6 py-4 font-display text-lg font-extrabold uppercase tracking-wide text-ink shadow-cta md:text-xl disabled:opacity-40"
+            onClick={completeGoal}
+            className="mt-6 w-full rounded-lg bg-fbyellow px-6 py-4 font-display text-lg font-extrabold uppercase tracking-wide text-ink shadow-cta md:text-xl"
             style={{ minHeight: 56 }}
           >
-            Continue →
+            Start My Free Plan →
           </button>
+          <p className="mt-3 text-center text-sm text-steel">
+            Free either way · Free InBody Success Scan included · 30-minute coach-led sessions
+          </p>
         </section>
       )}
 
       {step === 2 && (
         <section>
-          <h1 className="h-section">
+          <h2 className="h-section">
             Where should Coach Nate send your personalized plan and scan invite?
-          </h1>
+          </h2>
           <div className="mt-6 space-y-4">
             <input
               type="text"
@@ -201,6 +226,7 @@ export default function QuizForm({
               value={a.first_name}
               onChange={(e) => setA({ ...a, first_name: e.target.value })}
               placeholder="First name"
+              aria-label="First name"
               className="w-full rounded-xl border-2 border-line bg-white px-5 py-4 text-lg outline-none focus:border-ink"
               style={{ minHeight: 56 }}
             />
@@ -211,6 +237,7 @@ export default function QuizForm({
               value={a.phone}
               onChange={(e) => setA({ ...a, phone: e.target.value })}
               placeholder="Phone"
+              aria-label="Phone"
               className="w-full rounded-xl border-2 border-line bg-white px-5 py-4 text-lg outline-none focus:border-ink"
               style={{ minHeight: 56 }}
             />
@@ -221,6 +248,7 @@ export default function QuizForm({
               value={a.email}
               onChange={(e) => setA({ ...a, email: e.target.value })}
               placeholder="Email"
+              aria-label="Email"
               className="w-full rounded-xl border-2 border-line bg-white px-5 py-4 text-lg outline-none focus:border-ink"
               style={{ minHeight: 56 }}
             />
@@ -236,12 +264,15 @@ export default function QuizForm({
           <p className="mt-3 text-center text-sm text-steel">
             Free InBody Success Scan included · Coach Nate personally reviews every application
           </p>
+          <p className="mt-3 text-center text-xs leading-relaxed text-graphite/60">
+            We&apos;ll text your plan to this number. No spam — reply STOP any time.
+          </p>
         </section>
       )}
 
       {step === 3 && (
         <section>
-          <h1 className="h-section">How long have you been wanting to make this change?</h1>
+          <h2 className="h-section">How long have you been wanting to make this change?</h2>
           <div className="mt-6 space-y-3">
             {HOW_LONG.map((opt) => (
               <button
@@ -259,7 +290,7 @@ export default function QuizForm({
 
       {step === 4 && (
         <section>
-          <h1 className="h-section">What&apos;s stopped you before?</h1>
+          <h2 className="h-section">What&apos;s stopped you before?</h2>
           <div className="mt-6 space-y-3">
             {OBSTACLES.map((opt) => (
               <button
@@ -277,7 +308,7 @@ export default function QuizForm({
 
       {step === 5 && (
         <section>
-          <h1 className="h-section">How ready are you to actually do something about it?</h1>
+          <h2 className="h-section">How ready are you to actually do something about it?</h2>
           <div className="mt-8">
             <p className="text-center font-display text-6xl font-extrabold" aria-hidden>
               {a.readiness_score}

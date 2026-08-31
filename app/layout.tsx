@@ -31,6 +31,30 @@ export const metadata: Metadata = {
   title: 'Free Transformation Assessment | Fit Body Boot Camp Matthews',
   description:
     "In 4 minutes, Coach Nate reveals the 3 missing pieces behind every lasting transformation — and why every program you've tried was missing at least two of them.",
+  openGraph: {
+    title: 'Free Transformation Assessment | Fit Body Boot Camp Matthews',
+    description:
+      "In 4 minutes, Coach Nate reveals the 3 missing pieces behind every lasting transformation — and why every program you've tried was missing at least two of them.",
+    url: '/',
+    siteName: 'Fit Body Boot Camp Matthews',
+    type: 'website',
+    locale: 'en_US',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Coach Nate coaching a member at Fit Body Boot Camp Matthews',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Free Transformation Assessment | Fit Body Boot Camp Matthews',
+    description:
+      "In 4 minutes, Coach Nate reveals the 3 missing pieces behind every lasting transformation — and why every program you've tried was missing at least two of them.",
+    images: ['/og-image.jpg'],
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

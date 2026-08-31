@@ -40,6 +40,9 @@ export default function QuizPage() {
           Answer a few quick questions — 60 seconds — and Coach Nate will build your plan
           around <em>your</em> answers. Free either way.
         </p>
+        <p className="mt-4 text-center text-sm font-medium tracking-wide text-silver">
+          <span className="text-fbyellow" aria-hidden>★★★★★</span> 5.0 on Google · Matthews, NC
+        </p>
       </section>
       <QuizForm q1Variant={q1Variant} dest="/watch" submitLabel="See My Next Step →" />
       <FunnelFooter />
