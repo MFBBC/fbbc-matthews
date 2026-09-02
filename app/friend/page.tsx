@@ -10,13 +10,13 @@ import SalesLetter, { FAQS } from '@/components/SalesLetter';
 export const metadata: Metadata = {
   title: 'Your Friend Saved You a Seat | Fit Body Boot Camp Matthews',
   description:
-    'A member here gave you one of their two guest seats. Claim it: a free 20-minute Transformation Session with Coach Nate in Matthews, NC. You leave with a plan either way.',
+    'A member here gave you one of their two guest seats. Claim it: a free 20-minute Transformation Call with Coach Nate in Matthews, NC. You leave with a plan either way.',
   robots: { index: false, follow: false },
   alternates: { canonical: '/friend' },
 };
 
 /**
- * Campaign page — the member-referral flyer QR lands here.
+ * Campaign page: the member-referral flyer QR lands here.
  * Deliberately the same experience as /watch (VSL + full letter), on its own
  * URL so referral scans are attributable. Noindex; CTAs live in VslHero and
  * SalesLetter and all go to /book.
