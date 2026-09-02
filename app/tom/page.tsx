@@ -4,11 +4,12 @@ import BrandHeader from '@/components/BrandHeader';
 import FunnelFooter from '@/components/FunnelFooter';
 import { CtaButton, StickyCta } from '@/components/Cta';
 import SalesLetter, { FAQS } from '@/components/SalesLetter';
+import VslPlayer from '@/components/VslPlayer';
 
 export const metadata: Metadata = {
-  title: 'Tom, We Have Proof | Fit Body Boot Camp Matthews',
+  title: 'Oh, You’re Nosy | Fit Body Boot Camp Matthews',
   description:
-    'You know what you did, Tom. Skipped leg day. Ghosted a gym in February. Come turn yourself in: free Transformation Call at Fit Body Boot Camp Matthews.',
+    'You came for the gossip and found a gym: book a free Transformation Call at Fit Body Boot Camp Matthews.',
   robots: { index: false, follow: false },
   alternates: { canonical: '/tom' },
 };
@@ -29,25 +30,19 @@ export default function TomPage() {
         {/* ─────────────────── DARK HERO (the gag) ─────────────────── */}
         <section className="bg-ink pb-14 pt-10 text-white md:pt-16">
           <div className="mx-auto max-w-3xl px-4">
-            <p className="eyebrow-onDark mb-4 text-center">The evidence, as promised</p>
+            <p className="eyebrow-onDark mb-4 text-center">Caught you.</p>
 
             <h1 className="h-display text-center">
-              TOM. <span className="text-fbyellow">YOU CHEATED.</span>
+              OH, YOU&rsquo;RE <span className="text-fbyellow">NOSY.</span>
             </h1>
 
             <p className="mx-auto mt-5 max-w-xl text-center text-lg text-silver">
-              January 2nd: &ldquo;this is my year.&rdquo; January 19th: couch. By February you
-              were telling people the gym was &ldquo;too crowded anyway.&rdquo; We checked, Tom.
-              You went twice.
-            </p>
-
-            <p className="mx-auto mt-4 max-w-xl text-center text-lg text-white">
-              Not named Tom? You just scanned a stranger&rsquo;s flyer hoping for gossip.
-              Respect. But the couch part sounded familiar, didn&rsquo;t it.
+              Not the hot tea you were expecting? Give it a second. It&rsquo;s still piping hot.
             </p>
 
             <p className="mx-auto mt-3 max-w-xl text-center text-sm italic text-silver">
-              (Actual Toms: breathe. It&rsquo;s a gym ad. Your secrets are safe. Mostly.)
+              (Tom, you can breathe. It&rsquo;s only the best gym ad you&rsquo;ve ever seen. Your
+              secrets are safe. Mostly.)
             </p>
 
             {/* The pivot: register shifts from bit to straight talk, into the letter. */}
@@ -73,6 +68,25 @@ export default function TomPage() {
             </div>
           </div>
         </section>
+
+        {/* ── The VSL, once it exists: hidden until NEXT_PUBLIC_VSL_ID is set ── */}
+        {process.env.NEXT_PUBLIC_VSL_ID ? (
+          <section className="bg-ink pb-14 text-white">
+            <div className="mx-auto max-w-3xl px-4">
+              <div className="border-t border-white/15 pt-10">
+                <p className="eyebrow-onDark mb-4 text-center">The full confession</p>
+
+                <div className="overflow-hidden rounded-xl ring-2 ring-fbblue">
+                  <VslPlayer />
+                </div>
+
+                <p className="mx-auto mt-3 max-w-xl text-center text-sm text-silver">
+                  Coach Nate explains the 3 missing pieces in 4 minutes 30 seconds. Sound on.
+                </p>
+              </div>
+            </div>
+          </section>
+        ) : null}
 
         <SalesLetter />
 
