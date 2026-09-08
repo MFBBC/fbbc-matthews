@@ -127,12 +127,12 @@ export default function VslPlayer({ onPlay }: { onPlay?: () => void }) {
       {!playing ? (
         <button
           onClick={start}
-          aria-label="Play the 4-minute video"
+          aria-label="Play the 7-minute video"
           className="group absolute inset-0 h-full w-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-fbyellow"
         >
           <Image
             src={POSTER}
-            alt="Coach Nate — tap to play the 4-minute video"
+            alt="Coach Nate. Tap to play the 7-minute video"
             fill
             priority
             quality={70}
@@ -162,7 +162,7 @@ export default function VslPlayer({ onPlay }: { onPlay?: () => void }) {
         <iframe
           ref={iframeRef}
           src={`https://www.youtube-nocookie.com/embed/${VIDEO_ID}?enablejsapi=1&autoplay=1&rel=0&modestbranding=1&playsinline=1`}
-          title="Watch the 4-minute video"
+          title="Watch the 7-minute video"
           allow="autoplay; encrypted-media; picture-in-picture"
           allowFullScreen
           className="absolute inset-0 h-full w-full"
@@ -171,7 +171,7 @@ export default function VslPlayer({ onPlay }: { onPlay?: () => void }) {
         <iframe
           ref={iframeRef}
           src={`https://player.vimeo.com/video/${VIDEO_ID}?autoplay=1&playsinline=1`}
-          title="Watch the 4-minute video"
+          title="Watch the 7-minute video"
           allow="autoplay; fullscreen; picture-in-picture"
           allowFullScreen
           className="absolute inset-0 h-full w-full"

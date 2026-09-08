@@ -30,11 +30,11 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: 'Free Transformation Assessment | Fit Body Boot Camp Matthews',
   description:
-    "In 4 minutes, Coach Nate reveals the 3 missing pieces behind every lasting transformation — and why every program you've tried was missing at least two of them.",
+    "In 7 minutes, Coach Nate reveals the 3 missing pieces behind every lasting transformation, and why every program you've tried was missing at least two of them.",
   openGraph: {
     title: 'Free Transformation Assessment | Fit Body Boot Camp Matthews',
     description:
-      "In 4 minutes, Coach Nate reveals the 3 missing pieces behind every lasting transformation — and why every program you've tried was missing at least two of them.",
+      "In 7 minutes, Coach Nate reveals the 3 missing pieces behind every lasting transformation, and why every program you've tried was missing at least two of them.",
     url: '/',
     siteName: 'Fit Body Boot Camp Matthews',
     type: 'website',
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Free Transformation Assessment | Fit Body Boot Camp Matthews',
     description:
-      "In 4 minutes, Coach Nate reveals the 3 missing pieces behind every lasting transformation — and why every program you've tried was missing at least two of them.",
+      "In 7 minutes, Coach Nate reveals the 3 missing pieces behind every lasting transformation, and why every program you've tried was missing at least two of them.",
     images: ['/og-image.jpg'],
   },
 };

@@ -76,8 +76,8 @@ export default function VslHero({
                 <span className="text-fbyellow">Isn&rsquo;t You.</span> Watch This.
               </h1>
               <p className="mx-auto mt-5 max-w-xl text-center text-lg text-silver">
-                In the next 4 minutes, Coach Nate reveals the 3 missing pieces behind every
-                lasting transformation in his gym — and why every program you&apos;ve tried was
+                In the next 7 minutes, Coach Nate reveals the 3 missing pieces behind every
+                lasting transformation in his gym, and why every program you&apos;ve tried was
                 missing at least two of them.
               </p>
             </>
@@ -88,8 +88,8 @@ export default function VslHero({
                 <span className="text-fbyellow">You Disappeared From Your Own List.</span>
               </h1>
               <p className="mx-auto mt-5 max-w-xl text-center text-lg text-silver">
-                It was never you. In the next 4 minutes, Coach Nate reveals the 3 missing
-                pieces behind every lasting transformation in his gym — and why every program
+                It was never you. In the next 7 minutes, Coach Nate reveals the 3 missing
+                pieces behind every lasting transformation in his gym, and why every program
                 you&apos;ve tried was missing at least two of them.
               </p>
             </>
@@ -99,7 +99,7 @@ export default function VslHero({
             <VslPlayer onPlay={onPlay} />
           </div>
           <p className="mt-3 text-center text-sm font-medium uppercase tracking-widest text-silver">
-            4 min 30 sec · Sound on
+            6 min 43 sec · Sound on
           </p>
 
           <div className="mt-8">

@@ -49,10 +49,10 @@ export function VideoSchema() {
         '@type': 'VideoObject',
         name: 'The 3 Missing Pieces Behind Every Lasting Transformation',
         description:
-          "Coach Nate reveals the 3 missing pieces behind every lasting transformation in his gym — and why every program you've tried was missing at least two of them.",
+          "Coach Nate reveals the 3 missing pieces behind every lasting transformation in his gym, and why every program you've tried was missing at least two of them.",
         thumbnailUrl: `${SITE_URL}${process.env.NEXT_PUBLIC_VSL_POSTER || '/images/vsl-poster.jpg'}`,
-        uploadDate: '2026-08-01',
-        duration: 'PT4M30S',
+        uploadDate: '2026-09-08',
+        duration: 'PT6M43S',
         publisher: { '@type': 'Organization', name: BIZ.name },
       }}
     />

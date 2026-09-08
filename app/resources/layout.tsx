@@ -23,7 +23,7 @@ export default function ResourcesLayout({ children }: { children: React.ReactNod
           <Link href="/resources/gym-in-stallings-nc" className="underline">Gym in Stallings NC</Link>
           <Link href="/resources/gym-in-south-charlotte" className="underline">Gym in South Charlotte</Link>
           <Link href="/resources/burn-boot-camp-alternatives-matthews" className="underline">Burn Boot Camp alternatives</Link>
-          <Link href="/" className="underline">Watch the 4-minute video</Link>
+          <Link href="/" className="underline">Watch the 7-minute video</Link>
         </nav>
         <p>
           {BIZ.name} · {BIZ.street}, {BIZ.city}, {BIZ.state} {BIZ.zip} ·{' '}

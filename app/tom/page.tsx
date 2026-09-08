@@ -81,7 +81,7 @@ export default function TomPage() {
                 </div>
 
                 <p className="mx-auto mt-3 max-w-xl text-center text-sm text-silver">
-                  Coach Nate explains the 3 missing pieces in 4 minutes 30 seconds. Sound on.
+                  Coach Nate explains the 3 missing pieces in 6 minutes 43 seconds. Sound on.
                 </p>
               </div>
             </div>

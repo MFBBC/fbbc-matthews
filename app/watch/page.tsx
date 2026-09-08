@@ -12,7 +12,7 @@ import { FAQS } from '@/components/SalesLetter';
 export const metadata: Metadata = {
   title: 'The Reason Nothing Has Worked Isn’t You | Fit Body Boot Camp Matthews',
   description:
-    "In the next 4 minutes, Coach Nate reveals the 3 missing pieces behind every lasting transformation in his gym — and why every program you've tried was missing at least two of them.",
+    "In the next 7 minutes, Coach Nate reveals the 3 missing pieces behind every lasting transformation in his gym, and why every program you've tried was missing at least two of them.",
   alternates: { canonical: '/watch' },
 };
 
